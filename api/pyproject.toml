@@ -1,7 +1,7 @@
 [project]
-name = "api"
+name = "userapi"
 version = "0.1.0"
-description = "Add your description here"
+description = "Simple Mongodb api to try out mongo configurations"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -9,4 +9,10 @@ dependencies = [
     "motor>=3.7.0",
     "pydantic>=2.11.3",
     "uvicorn>=0.34.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "requests>=2.32.3",
 ]
