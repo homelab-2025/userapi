@@ -17,7 +17,7 @@ app = FastAPI(
     title="User Management API",
     summary="API to manage a collection of users using FastAPI and MongoDB.",
 )
-client = motor.motor_asyncio.AsyncIOMotorClient(os.environ.get("MONGODB_URL","mongodb://localhost:27017"))
+client = motor.motor_asyncio.AsyncIOMotorClient(os.environ.get("MONGODB_URI","mongodb://localhost:27017"))
 db = client.usersdb
 user_collection = db.get_collection("users")
 
