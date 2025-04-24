@@ -1,0 +1,14 @@
+services:
+  server:
+    build:
+      context: .
+    environment: # to set uri to mongo service
+      - MONGODB_URI=mongodb://mongo:27017
+    ports:
+      - "8000:8000"
+    networks:
+      - shared
+
+networks:
+  shared:
+    external: true
