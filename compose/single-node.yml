@@ -11,9 +11,20 @@ services:
     networks: # to access to mongo from containers
       - shared
 
+  server:
+    depends_on:
+      - mongo
+    build:
+      context: ..
+    environment: # to set uri to mongo service
+      - MONGODB_URI=mongodb://mongo:27017
+    ports:
+      - "8000:8000"
+    networks:
+      - shared
+
 volumes:
   mongo_data:
 
 networks:
   shared:
-    external: true
