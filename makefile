@@ -15,7 +15,7 @@ cup:
 	docker compose -f compose/single-node.yml up -d
 
 cdown:
-	docker compose down
+	docker compose -f compose/single-node.yml down
 
 tests:
 	uv run pytest
