@@ -15,7 +15,8 @@
         "esbenp.prettier-vscode",
         "ms-azuretools.vscode-docker",
         "ms-kubernetes-tools.vscode-kubernetes-tools",
-        "ms-vscode.makefile-tools"
+        "ms-vscode.makefile-tools",
+        "GitHub.copilot"
       ],
       "settings": {
         "editor.defaultFormatter": "ms-python.black-formatter",
@@ -24,7 +25,8 @@
         "python.formatting.provider": "black",
         "python.linting.enabled": true,
         "python.linting.pylintEnabled": true,
-        "python.linting.pylintArgs": ["--disable=C0114,C0115,C0116"]
+        "python.linting.pylintArgs": ["--disable=C0114,C0115,C0116"],
+        "workbench.colorTheme": "GitHub Dark Default"
       }
     }
   }
