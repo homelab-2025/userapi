@@ -1,4 +1,4 @@
-.PHONY: install run tests clean
+.PHONY: install run cup cdown tests clean
 .DEFAULT_GOAL := run
 
 HOST = '0.0.0.0'
@@ -10,6 +10,12 @@ install:
 	
 run:
 	uv run uvicorn src.main:app --reload --host ${HOST} --port ${PORT} --log-config log_conf.json
+
+cup:
+	docker compose -f compose/single-node.yml up -d
+
+cdown:
+	docker compose down
 
 tests:
 	uv run pytest
