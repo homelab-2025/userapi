@@ -15,7 +15,7 @@ services:
     depends_on:
       - mongo
     build:
-      context: ..
+      dockerfile: Dockerfile
     environment: # to set uri to mongo service
       - MONGODB_URI=mongodb://mongo:27017
     ports:

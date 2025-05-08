@@ -12,10 +12,10 @@ run:
 	uv run uvicorn src.main:app --reload --host ${HOST} --port ${PORT} --log-config log_conf.json
 
 cup:
-	docker compose -f compose/single-node.yml up -d
+	docker compose up -d
 
 cdown:
-	docker compose -f compose/single-node.yml down
+	docker compose down
 
 tests:
 	uv run pytest
