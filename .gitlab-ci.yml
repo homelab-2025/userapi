@@ -1,0 +1,48 @@
+workflow:
+  name: Userapi continuous delivery pipeline
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+      when: always
+
+stages:
+  - build
+  - push
+
+variables:
+  IMAGE_NAME: enzo2346/userapi-mongo
+  IMAGE_TAG: latest
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+
+.docker_login: &docker_login
+  before_script:
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+build_image:
+  stage: build
+  image: docker:24.0.6
+  services:
+    - docker:24.0.6-dind
+  script:
+    - docker buildx create --use
+    - docker buildx build \
+        --platform linux/arm64 \
+        -t $IMAGE_NAME:$IMAGE_TAG \
+        --output type=docker .
+    - docker save $IMAGE_NAME:$IMAGE_TAG > image.tar
+  artifacts:
+    paths:
+      - image.tar
+    expire_in: 1h
+
+push_image:
+  stage: push
+  image: docker:24.0.6
+  services:
+    - docker:24.0.6-dind
+  <<: *docker_login
+  script:
+    - docker load < image.tar
+    - docker push $IMAGE_NAME:$IMAGE_TAG
+  dependencies:
+    - build_image
