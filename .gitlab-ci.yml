@@ -25,10 +25,7 @@ build_image:
     - docker:24.0.6-dind
   script:
     - docker buildx create --use
-    - docker buildx build \
-        --platform linux/arm64 \
-        -t $IMAGE_NAME:$IMAGE_TAG \
-        --output type=docker .
+    - docker buildx build --platform linux/arm64 -t $IMAGE_NAME:$IMAGE_TAG --output type=docker .
     - docker save $IMAGE_NAME:$IMAGE_TAG > image.tar
   artifacts:
     paths:
